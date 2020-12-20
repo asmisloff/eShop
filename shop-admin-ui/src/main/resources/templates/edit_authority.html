@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/common :: head/link}"/>
+
+    <title>Admin Panel</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/common :: navigation}"></div>
+
+<div class="d-flex">
+
+    <th:block th:replace="~{fragments/common :: sidebar}" />
+    <th:block th:replace="~{fragments/forms :: auth_form(edit_auth_form, edit_authority, Update)}" />
+
+</div>
+
+<th:block th:replace="~{fragments/common :: body/script}" />
+
+</body>
+</html>
