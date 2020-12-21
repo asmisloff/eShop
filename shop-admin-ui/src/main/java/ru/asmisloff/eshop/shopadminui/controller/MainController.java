@@ -13,7 +13,6 @@ import ru.asmisloff.eshop.shopdatabase.services.AuthorityService;
 import ru.asmisloff.eshop.shopdatabase.services.UserService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -42,9 +41,7 @@ public class MainController {
 
     @GetMapping("add_user")
     public String showAddUserForm(Model model) {
-        model
-                .addAttribute("authorities", authorityService.findAll())
-                .addAttribute("user", new User());
+        model.addAttribute("user", new User());
 
         return "add_user";
     }
@@ -55,43 +52,31 @@ public class MainController {
             @RequestParam("id") Long id) {
         model.addAttribute("user_id", id);
         model.addAttribute("user", userService.findById(id));
-        model.addAttribute("authorities", authorityService.findAll());
         return "edit_user";
     }
 
-    //todo: validation
     @PostMapping("add_user")
     public String addUser(
             @Valid @ModelAttribute User user,
-            @RequestParam(value = "authorityIdsChecked", required = false) List<Long> authorityIds,
             BindingResult bindingResult
     ) {
         if (bindingResult.hasErrors()) {
             return "add_user";
         }
 
-        if (authorityIds != null) {
-            authorityIds.forEach(authorityId -> user.addAuthority(authorityService.findById(authorityId)));
-        }
         user.setId(null);
         userService.save(user);
         return "redirect:/";
     }
 
-    //todo: validation
     @PostMapping("edit_user")
     public String editUser(
             @Valid @ModelAttribute User user,
-            @RequestParam(value = "authorityIdsChecked", required = false) List<Long> authorityIds,
             BindingResult bindingResult
     ) {
 
         if (bindingResult.hasErrors()) {
             return "edit_user";
-        }
-
-        if (authorityIds != null) {
-            authorityIds.forEach(authorityId -> user.addAuthority(authorityService.findById(authorityId)));
         }
 
         userService.update(user);
@@ -110,7 +95,6 @@ public class MainController {
         return "edit_authority";
     }
 
-    //todo: validation
     @PostMapping("add_authority")
     public String addAuthority(@Valid @ModelAttribute Authority authority) {
         authority.setId(null);
@@ -118,7 +102,6 @@ public class MainController {
         return "redirect:/";
     }
 
-    //todo: validation
     @PostMapping("edit_authority")
     public String editAuthority(@Valid @ModelAttribute Authority authority, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

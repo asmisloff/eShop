@@ -2,6 +2,7 @@ package ru.asmisloff.eshop.shopdatabase.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -18,18 +19,14 @@ public class User {
     private Long id;
 
     @Column(name="login")
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String login;
 
     @Column(name = "name")
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String name;
 
     @Column(name = "email")
-    @NotNull
-    @NotEmpty
     @Email
     private String email;
 

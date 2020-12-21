@@ -1,6 +1,7 @@
 package ru.asmisloff.eshop.shopdatabase.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -17,8 +18,7 @@ public class Authority {
     private Long id;
 
     @Column(name = "name")
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -66,5 +66,10 @@ public class Authority {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

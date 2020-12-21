@@ -36,10 +36,15 @@
                 <!--                    <label for="exampleInputPassword1">Password</label>-->
                 <!--                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
                 <!--                </div>-->
-                <div class="form-group form-check mb-0" th:each="authority : ${authorities}">
-                    <input type="checkbox" class="form-check-input" th:name="authorityIdsChecked"
-                           th:value="${authority.id}" th:checked="${user.hasAuthority(authority)}">
-                    <label class="form-check-label" th:for="${authority.name}" th:text="${authority.name}"> Check me </label>
+                <div class="form-group form-check mb-0" th:each="authority : ${@authorityService.findAll()}">
+                    <input type="checkbox"
+                           class="form-check-input"
+                           th:field="${user.authorities}"
+                           th:value="${authority.id}"
+                           th:text="${authority.name}"
+                           th:checked="${user.hasAuthority(authority)}"
+                    />
+<!--                    <label class="form-check-label" th:for="${authority.name}" th:text="${authority.name}"> Check me </label>-->
                 </div>
             </form>
             <div class="card-footer bg-white">
@@ -47,6 +52,7 @@
             </div>
         </div>
     </div>
+
     <div class="card mb-4" th:fragment="auth_form(form_id, action, button_text)">
         <div class="card-header bg-white font-weight-bold">
             Add user
