@@ -96,7 +96,10 @@ public class MainController {
     }
 
     @PostMapping("add_authority")
-    public String addAuthority(@Valid @ModelAttribute Authority authority) {
+    public String addAuthority(@Valid @ModelAttribute Authority authority, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "add_authority";
+        }
         authority.setId(null);
         authorityService.save(authority);
         return "redirect:/";

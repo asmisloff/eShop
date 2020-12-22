@@ -2,11 +2,8 @@ package ru.asmisloff.eshop.shopdatabase.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -49,7 +46,7 @@ public class Authority {
     }
 
     public void setName(String name) {
-        if (!name.startsWith("ROLE_")) {
+        if (!(name.isBlank() || name.startsWith("ROLE_"))) {
             name = "ROLE_" + name;
         }
         this.name = name.toUpperCase();
