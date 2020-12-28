@@ -22,53 +22,12 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                <p>Users:</p>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col"> Login </th>
-                            <th scope="col"> Name </th>
-                            <th scope="col"> e-mail </th>
-                            <th scope="col"> Roles </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="user : ${users}">
-                            <td> <a th:href="@{'/edit_user?id=' + ${user.id}}" th:text="${user.login}"> login </a> </td>
-                            <td th:text="${user.name}"> name </td>
-                            <td th:text="${user.email}"> email </td>
-                            <td>
-                                <ul>
-                                    <li th:each="authority : ${user.authorities}" th:text="${authority.name}"> authority </li>
-                                </ul>
-                            </td>
-                            <td> <a th:href="@{'/delete_user?id=' + ${user.id}}"> delete </a> </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a th:href="@{/add_user}"> Add new user </a>
+                <h2> Панель управления сайтом </h2>
+
             </div>
         </div>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <p>Roles:</p>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col"> Name </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="authority : ${authorities}">
-                        <td> <a th:href="@{'/edit_authority?id=' + ${authority.id}}" th:text="${authority.name}" /> </td>
-                        <td> <a th:href="@{'/delete_authority?id=' + ${authority.id}}"> delete </a> </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <a th:href="@{/add_authority}"> Add new authority </a>
-            </div>
-        </div>
+
 
     </div>
 </div>

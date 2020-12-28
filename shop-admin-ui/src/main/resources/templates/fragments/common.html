@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootadmin.min.css}">
-    <link rel="stylesheet" href="https://bootadmin.net/css/datatables.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 </head>
 <body>
     <nav th:fragment="navigation" class="navbar navbar-expand navbar-dark bg-primary">
@@ -18,7 +18,7 @@
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a th:href="@{/users}" class="nav-link"><i class="fa fa-envelope"></i> Users </a></li>
-                <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> Roles </a></li>
+                <li class="nav-item"><a th:href="@{/authorities}" class="nav-link"><i class="fa fa-bell"></i> Authorities </a></li>
                 <li class="nav-item dropdown">
                     <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Doe</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
@@ -51,7 +51,15 @@
     <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/js/bootadmin.min.js}"></script>
-    <script src="https://bootadmin.net/js/datatables.min.js"></script>
+
+    <th:block th:fragment="decorate_tables">
+        <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.datatable').DataTable();
+            });
+        </script>
+    </th:block>
 
 </body>
 </html>

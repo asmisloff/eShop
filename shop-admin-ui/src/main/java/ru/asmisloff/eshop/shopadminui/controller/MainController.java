@@ -17,113 +17,11 @@ import javax.validation.Valid;
 @Controller
 public class MainController {
 
-    private UserService userService;
-    private AuthorityService authorityService;
-
-    public MainController(UserService userService, AuthorityService authorityService) {
-        this.userService = userService;
-        this.authorityService = authorityService;
-    }
-
     @GetMapping("/")
     public String indexPage(Model model) {
         model.addAttribute("activePage", "None");
-        model.addAttribute("users", userService.findAll());
-        model.addAttribute("authorities", authorityService.findAll());
         return "index";
     }
 
-    @GetMapping("users")
-    public String showUsersList(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "users";
-    }
-
-    @GetMapping("add_user")
-    public String showAddUserForm(Model model) {
-        model.addAttribute("user", new User());
-
-        return "add_user";
-    }
-
-    @GetMapping("edit_user")
-    public String showEditUserForm(
-            Model model,
-            @RequestParam("id") Long id) {
-        model.addAttribute("user_id", id);
-        model.addAttribute("user", userService.findById(id));
-        return "edit_user";
-    }
-
-    @PostMapping("add_user")
-    public String addUser(
-            @Valid @ModelAttribute User user,
-            BindingResult bindingResult
-    ) {
-        if (bindingResult.hasErrors()) {
-            return "add_user";
-        }
-
-        user.setId(null);
-        userService.save(user);
-        return "redirect:/";
-    }
-
-    @PostMapping("edit_user")
-    public String editUser(
-            @Valid @ModelAttribute User user,
-            BindingResult bindingResult
-    ) {
-
-        if (bindingResult.hasErrors()) {
-            return "edit_user";
-        }
-
-        userService.update(user);
-        return "redirect:/";
-    }
-
-    @GetMapping("add_authority")
-    public String showAddAuthorityForm(Model model) {
-        model.addAttribute(new Authority());
-        return "add_authority";
-    }
-
-    @GetMapping("edit_authority")
-    public String showEditAuthorityForm(Model model, @RequestParam("id") Long id) {
-        model.addAttribute(authorityService.findById(id));
-        return "edit_authority";
-    }
-
-    @PostMapping("add_authority")
-    public String addAuthority(@Valid @ModelAttribute Authority authority, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "add_authority";
-        }
-        authority.setId(null);
-        authorityService.save(authority);
-        return "redirect:/";
-    }
-
-    @PostMapping("edit_authority")
-    public String editAuthority(@Valid @ModelAttribute Authority authority, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "edit_authority";
-        }
-        authorityService.save(authority);
-        return "redirect:/";
-    }
-
-    @GetMapping("/delete_user")
-    public String deleteUser(@RequestParam("id") Long id) {
-        userService.deleteById(id);
-        return "redirect:/";
-    }
-
-    @GetMapping("/delete_authority")
-    public String deleteAuthority(@RequestParam("id") Long id) {
-        authorityService.deleteById(id);
-        return "redirect:/";
-    }
 
 }

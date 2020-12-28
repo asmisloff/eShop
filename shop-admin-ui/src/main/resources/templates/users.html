@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/common :: head/link}"/>
+
+    <title>Admin Panel</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/common :: navigation}"></div>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/common :: sidebar}"></div>
+
+    <div class="content p-4">
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <p>Users:</p>
+                <table id="authorities" class="table table-hover datatable" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th scope="col"> Login </th>
+                            <th scope="col"> Name </th>
+                            <th scope="col"> e-mail </th>
+                            <th scope="col"> Roles </th>
+                            <th scope="col" hidden> hrefs to delete rows </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td> <a th:href="@{'/edit_user?id=' + ${user.id}}" th:text="${user.login}"> login </a> </td>
+                            <td th:text="${user.name}"> name </td>
+                            <td th:text="${user.email}"> email </td>
+                            <td>
+                                <ul>
+                                    <li th:each="authority : ${user.authorities}" th:text="${authority.name}"> authority </li>
+                                </ul>
+                            </td>
+                            <td> <a th:href="@{'/delete_user?id=' + ${user.id}}"> delete </a> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a th:href="@{/add_user}"> Add new user </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<th:block th:replace="~{fragments/common :: body/script}" />
+<th:block th:replace="~{fragments/common :: decorate_tables}"/>
+
+</body>
+</html>

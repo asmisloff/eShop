@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/common :: head/link}"/>
+
+    <title>Admin Panel</title>
+</head>
+<body class="bg-light">
+
+    <div th:replace="~{fragments/common :: navigation}"></div>
+
+        <div class="d-flex">
+            <div th:replace="~{fragments/common :: sidebar}"></div>
+
+            <div class="content p-4">
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p>Roles:</p>
+                        <table id="authorities" class="table table-hover datatable" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th> Name </th>
+                                    <th hidden> hrefs to delete rows </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="authority : ${authorities}">
+                                    <td> <a th:href="@{'/edit_authority?id=' + ${authority.id}}" th:text="${authority.name}" /> </td>
+                                    <td> <a th:href="@{'/delete_authority?id=' + ${authority.id}}"> delete </a> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a th:href="@{/add_authority}"> Add new authority </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    <th:block th:replace="~{fragments/common :: body/script}" />
+    <th:block th:replace="~{fragments/common :: decorate_tables}"/>
+
+</body>
+</html>
+
