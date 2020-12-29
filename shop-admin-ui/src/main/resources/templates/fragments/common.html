@@ -6,24 +6,27 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.0.10/web-fonts-with-css/css/fontawesome-all.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootadmin.min.css}">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 </head>
 <body>
     <nav th:fragment="navigation" class="navbar navbar-expand navbar-dark bg-primary">
-        <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>
-        <a class="navbar-brand" href="#">Administration panel</a>
+<!--        <a class="sidebar-toggle mr-3" href="#"><i class="fa fa-bars"></i></a>-->
+        <a class="navbar-brand" th:href="@{/}">
+            <i class="fas fa-home fa-fw"></i>
+            Administration panel
+        </a>
 
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a th:href="@{/users}" class="nav-link"><i class="fa fa-envelope"></i> Users </a></li>
-                <li class="nav-item"><a th:href="@{/authorities}" class="nav-link"><i class="fa fa-bell"></i> Authorities </a></li>
                 <li class="nav-item dropdown">
-                    <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Doe</a>
+                    <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown" sec:authentication="name"><i class="fa fa-user"></i> John Doe</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
-                        <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Logout</a>
+<!--                        <a href="#" class="dropdown-item">Profile</a>-->
+                        <form th:action="@{/logout}" method="POST">
+                            <input type="submit" id="link-logout" class="dropdown-item" value="Logout"/>
+                        </form>
                     </div>
                 </li>
             </ul>
@@ -32,19 +35,13 @@
 
     <div th:fragment="sidebar" class="sidebar sidebar-dark bg-dark">
         <ul class="list-unstyled">
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li>
-                <a href="#sm_expand_1" data-toggle="collapse">
-                    <i class="fa fa-fw fa-link"></i> Expandable Menu Item
+            <li class="nav-item">
+                <a th:href="@{/users}" class="nav-link">
+                    <i class="fa fa-fw fa-link"></i>
+                    Users
                 </a>
-                <ul id="sm_expand_1" class="list-unstyled collapse">
-                    <li><a href="#">Submenu Item</a></li>
-                    <li><a href="#">Submenu Item</a></li>
-                </ul>
             </li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+            <li class="nav-item"><a th:href="@{/authorities}" class="nav-link"><i class="fa fa-fw fa-link"></i> Authorities </a></li>>
         </ul>
     </div>
 

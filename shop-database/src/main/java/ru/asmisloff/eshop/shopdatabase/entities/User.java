@@ -20,6 +20,10 @@ public class User {
     @Size(min = 5, max = 24)
     private String login;
 
+    @NotBlank
+    @Size(min = 6)
+    private String password;
+
     @Column(name = "name")
     @NotBlank
     private String name;
@@ -92,6 +96,14 @@ public class User {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

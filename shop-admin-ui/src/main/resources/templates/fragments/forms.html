@@ -13,7 +13,7 @@
             Add user
         </div>
         <div class="card-body">
-            <form method="post" th:action="${action}" th:object="${user}" th:id="${form_id}">
+            <form method="post" th:action="${action}" th:object="${user}" th:id="${form_id}" width="100%">
 
                 <input type="hidden" id="user_id_input" th:field="*{id}">
 
@@ -32,10 +32,11 @@
                     <input type="email" class="form-control" id="user_email_input" aria-describedby="emailHelp" placeholder="Enter email" th:field="*{email}">
                     <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Incorrect email</p>
                 </div>
-                <!--                <div class="form-group">-->
-                <!--                    <label for="exampleInputPassword1">Password</label>-->
-                <!--                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
-                <!--                </div>-->
+                <div class="form-group">
+                    <label for="password_input">Password</label>
+                    <input type="password" class="form-control" id="password_input" placeholder="Password" th:field="*{password}">
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Incorrect password</p>
+                </div>
                 <div class="form-group form-check mb-0" th:each="authority : ${@authorityService.findAll()}">
                     <input type="checkbox"
                            class="form-check-input"

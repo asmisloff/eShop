@@ -21,6 +21,11 @@ public class UsersController {
         this.userService = userService;
     }
 
+    @GetMapping("login")
+    public String loginPage() {
+        return "login";
+    }
+
     @GetMapping("users")
     public String showUsersList(Model model) {
         model.addAttribute("users", userService.findAll());
@@ -54,7 +59,7 @@ public class UsersController {
 
         user.setId(null);
         userService.save(user);
-        return "redirect:/";
+        return "redirect:/users";
     }
 
     @PostMapping("edit_user")
