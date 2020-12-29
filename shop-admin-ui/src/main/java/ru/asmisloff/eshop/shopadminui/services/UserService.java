@@ -1,11 +1,10 @@
-package ru.asmisloff.eshop.shopdatabase.services;
+package ru.asmisloff.eshop.shopadminui.services;
 
 import org.springframework.stereotype.Service;
 import ru.asmisloff.eshop.shopdatabase.entities.User;
 import ru.asmisloff.eshop.shopdatabase.repositories.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

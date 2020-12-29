@@ -1,4 +1,4 @@
-package ru.asmisloff.eshop.shopdatabase.services;
+package ru.asmisloff.eshop.shopadminui.services;
 
 import org.springframework.stereotype.Service;
 import ru.asmisloff.eshop.shopdatabase.entities.Authority;

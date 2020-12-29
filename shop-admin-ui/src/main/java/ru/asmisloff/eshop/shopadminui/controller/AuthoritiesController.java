@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.asmisloff.eshop.shopdatabase.entities.Authority;
-import ru.asmisloff.eshop.shopdatabase.services.AuthorityService;
+import ru.asmisloff.eshop.shopadminui.services.AuthorityService;
 
 import javax.validation.Valid;
 
