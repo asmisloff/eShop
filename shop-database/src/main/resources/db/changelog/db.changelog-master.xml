@@ -12,17 +12,16 @@
     <changeSet id="0" author="asmisloff">
         <tagDatabase tag="db_init"/>
     </changeSet>
-
     <include file="v-1.0/db.changelog-20201228-151508630.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="10" author="asmisloff">
         <tagDatabase tag="v-1.0"/>
     </changeSet>
-
     <include file="v-1.1/db.changelog-20201229-103318083.xml" relativeToChangelogFile="true"/>
 
-<!--    <changeSet id="20" author="aleks_ush">-->
-<!--        <tagDatabase tag="v-2.0"/>-->
-<!--    </changeSet>-->
+    <changeSet id="20" author="asmisloff">
+        <tagDatabase tag="v-2.0"/>
+    </changeSet>
+    <include file="v-2.0/db.changelog-20201229-143508565.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
