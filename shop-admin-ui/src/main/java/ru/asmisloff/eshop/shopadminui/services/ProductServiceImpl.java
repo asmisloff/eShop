@@ -70,6 +70,10 @@ public class ProductServiceImpl implements ProductService, Serializable {
                 logger.info("Product {} file {} size {} contentType {}", productRepr.getId(),
                         newPicture.getOriginalFilename(), newPicture.getSize(), newPicture.getContentType());
 
+                if (newPicture.getBytes().length == 0) {
+                    break;
+                }
+
                 if (product.getPictures() == null) {
                     product.setPictures(new ArrayList<>());
                 }

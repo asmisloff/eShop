@@ -28,6 +28,7 @@ public class PictureController {
 
     @GetMapping("/{pictureId}")
     public void downloadProductPicture(@PathVariable("pictureId") Long pictureId, HttpServletResponse resp) throws IOException {
+
         logger.info("Downloading picture with id: {}", pictureId);
 
         Optional<String> opt = pictureService.getPictureContentTypeById(pictureId);
@@ -37,5 +38,6 @@ public class PictureController {
         } else {
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
+
     }
 }

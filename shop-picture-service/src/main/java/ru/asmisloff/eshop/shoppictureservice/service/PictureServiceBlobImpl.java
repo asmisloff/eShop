@@ -1,14 +1,13 @@
 package ru.asmisloff.eshop.shoppictureservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.asmisloff.eshop.shopdatabase.entities.Picture;
 import ru.asmisloff.eshop.shopdatabase.entities.PictureData;
 import ru.asmisloff.eshop.shopdatabase.repositories.PictureRepository;
 
 import java.util.Optional;
 
-@Service
+//@Service
 public class PictureServiceBlobImpl implements PictureService {
 
     private final PictureRepository repository;

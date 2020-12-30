@@ -24,4 +24,9 @@
     </changeSet>
     <include file="v-2.0/db.changelog-20201229-143508565.xml" relativeToChangelogFile="true"/>
 
+    <changeSet id="30" author="asmisloff">
+        <tagDatabase tag="v-2.1"/>
+    </changeSet>
+    <include file="v-2.1/db.changelog-20201230-101926109.xml" relativeToChangelogFile="true"/>
+
 </databaseChangeLog>
