@@ -1,5 +1,6 @@
 package ru.asmisloff.eshop.shoppictureservice.service;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import ru.asmisloff.eshop.shopdatabase.entities.Picture;
 import ru.asmisloff.eshop.shopdatabase.entities.PictureData;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@ConditionalOnProperty(name = "pictureService.implementation", havingValue = "file")
 public class PictureServiceFilePathImpl implements PictureService {
 
     private final PictureRepository repository;
