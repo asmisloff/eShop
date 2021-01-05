@@ -69,7 +69,13 @@
         <div class="container-fluid mb-4">
             <div class="card-columns" style="column-count: 5">
                 <div class="card" th:each="pict : ${product.pictures}">
-                    <div class="card-header">Picture</div>
+                    <div class="card-header">
+                        <a th:href="@{/picture/delete/{id}(id=${pict.id})}"
+                           class="btn btn-icon btn-pill btn-danger"
+                           data-toggle="tooltip" data-original-title="Remove picture">
+                            <i class="fa fa-fw fa-trash"></i>
+                        </a>
+                    </div>
                     <img class="card-img-bottom" th:src="@{'/picture/' + ${pict.id}}"
                          width="40%"/>
                 </div>
