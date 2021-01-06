@@ -120,4 +120,15 @@ public class ProductRepr implements Serializable {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        return "ProductRepr{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", brand=" + brand +
+                ", pictures=" + pictures +
+                '}';
+    }
 }
