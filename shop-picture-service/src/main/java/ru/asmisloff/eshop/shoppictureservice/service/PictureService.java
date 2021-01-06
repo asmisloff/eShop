@@ -16,5 +16,5 @@ public interface PictureService {
 
     void delete(long id);
 
-    List<PictureRepr> findPicturesForProductId(Long id);
+    List<PictureRepr> findAllByProductId(Long id);
 }

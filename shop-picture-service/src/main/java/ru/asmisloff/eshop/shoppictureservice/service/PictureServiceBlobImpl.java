@@ -45,7 +45,7 @@ public class PictureServiceBlobImpl implements PictureService {
     }
 
     @Override
-    public List<PictureRepr> findPicturesForProductId(Long id) {
+    public List<PictureRepr> findAllByProductId(Long id) {
         throw new RuntimeException("Not Implemented -- List<PictureRepr> findPicturesForProductId(Long id) in PictureServiceBlobImpl");
     }
 }

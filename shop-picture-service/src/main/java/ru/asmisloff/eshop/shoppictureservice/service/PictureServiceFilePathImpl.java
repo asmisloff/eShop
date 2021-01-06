@@ -81,7 +81,8 @@ public class PictureServiceFilePathImpl implements PictureService {
     }
 
     @Override
-    public List<PictureRepr> findPicturesForProductId(Long id) {
+    public List<PictureRepr> findAllByProductId(Long id) {
+        logger.info("id = " + id);
         return pictureRepository.findAllByProductId(id)
                 .stream()
                 .map(PictureRepr::new)

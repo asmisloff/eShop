@@ -18,6 +18,7 @@
     <modules>
         <module>shop-database</module>
         <module>shop-picture-service</module>
+        <module>common</module>
         <module>shop-admin-ui</module>
         <module>shop-ui</module>
     </modules>

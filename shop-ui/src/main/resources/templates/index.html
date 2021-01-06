@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/common :: head/link}"/>
+
+    <title>Main page</title>
+</head>
+
+<body class="main-layout">
+
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+    </div>
+     <!-- end loader -->
+
+    <div class="wrapper">
+
+        <th:block th:replace="~{fragments/common :: sidebar}"/>
+
+        <div id="content">
+            <th:block th:replace="~{fragments/common :: header}"/>
+            <th:block th:replace="~{fragments/common :: slider}"/>
+<!--            <th:block th:replace="~{fragments/common :: discount}"/>-->
+            <th:block th:replace="~{fragments/common :: categories}"/>
+            <th:block th:replace="~{fragments/common :: footer}"/>
+        </div>
+
+    </div>
+
+    <div class="overlay"></div>
+
+    <th:block th:replace="~{fragments/common :: scripts}"/>
+
+    
+</body>
+
+</html>

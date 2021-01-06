@@ -8,10 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.asmisloff.eshop.shopadminui.services.UserService;
+import ru.asmisloff.eshop.common.service.UserService;
 
 @Configuration
-@EnableWebSecurity//(debug = true)
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/js/*").permitAll()
                 .antMatchers("/webfonts/*").permitAll()
                 .antMatchers("/webjars/**").permitAll()
-                .antMatchers("/**").authenticated()
+                .antMatchers("/**").hasAnyRole("ADMIN", "MANAGER")
                 .and()
                 .formLogin()
                 .loginPage("/login")

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.asmisloff.eshop.shopadminui.controller.repr.ProductRepr;
-import ru.asmisloff.eshop.shopadminui.error.NotFoundException;
-import ru.asmisloff.eshop.shopadminui.services.ProductService;
+import ru.asmisloff.eshop.common.repr.ProductRepr;
+import ru.asmisloff.eshop.common.error.NotFoundException;
+import ru.asmisloff.eshop.common.service.ProductService;
 import ru.asmisloff.eshop.shopdatabase.repositories.BrandRepository;
 import ru.asmisloff.eshop.shopdatabase.repositories.CategoryRepository;
 

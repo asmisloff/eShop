@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/common :: head/link}"/>
+
+    <title>Product</title>
+</head>
+<!-- body -->
+<body class="main-layout">
+<!-- loader  -->
+<div class="loader_bg">
+    <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+</div>
+
+<div class="wrapper">
+
+    <th:block th:replace="~{fragments/common :: sidebar}"/>
+
+    <div id="content">
+
+        <th:block th:replace="~{fragments/common :: header}"/>
+        <div class="contactus">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="title">
+                            <h2>Our Product</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ourproduct">
+            <div class="container">
+                <div class="row product_style_3">
+
+                    <!-- product -->
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" th:each="prod : ${products}">
+                        <div class="full product">
+                            <div class="product_img">
+                                <div class="center"><img th:src="@{'picture/' + ${prod.pictures[0].id}}" alt="#"/>
+                                    <div class="overlay_hover">
+                                        <a class="add-bt" th:href="product_detail3.html"> + Add to cart </a>
+                                        <br/>
+                                        <a class="add-bt" th:href="@{product/{id}(id = ${prod.id})}"> + Details </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_detail text_align_center">
+                                <p class="product_price" th:text="${prod.price}"> $679.89 </p>
+                                <p class="product_descr" th:text="${prod.name}">Lightweight Down Puffer Coat</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end product -->
+
+                </div>
+            </div>
+        </div>
+
+        <th:block th:replace="~{fragments/common :: footer}"/>
+
+    </div>
+
+</div>
+
+<div class="overlay"></div>
+
+<th:block th:replace="~{fragments/common :: scripts}" />
+
+</body>
+</html>
