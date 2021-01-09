@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace="~{fragments/common :: head/link}"/>
+
+    <title>Cart</title>
+</head>
+<body class="main-layout">
+
+    <div class="loader_bg">
+        <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+    </div>
+
+    <div class="wrapper">
+
+        <th:block th:replace="~{fragments/common :: sidebar}"/>
+
+        <div id="content">
+
+            <th:block th:replace="~{fragments/common :: header}"/>
+            <div class="contactus">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <div class="title">
+                                <h2>Your cart</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <table id="products" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Brand</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th class="actions" hidden>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="order : ${orders}">
+                            <td th:text="${order.key.name}"></td>
+                            <td th:text="${order.key.category.name}"></td>
+                            <td th:text="${order.key.brand.name}"></td>
+                            <td th:text="${order.key.price}"></td>
+                            <td th:text="${order.value}"></td>
+                            <td th:text="${@cartService.subTotal(order.key)}"></td>
+                            <td>
+                                <a class="btn btn-success" th:href="@{'/cart/add?productId=' + ${order.key.id} + '&qty=1'}">+</a>
+                                <a class="btn btn-warning" th:href="@{'/cart/remove?productId=' + ${order.key.id} + '&qty=1'}">-</a>
+                                <a class="btn btn-danger" th:href="@{'/cart/remove?productId=' + ${order.key.id} + '&qty=' + ${order.value}}">X</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <span>
+                    <i>Total: </i> <i class="font-weight-bold" th:text="${@cartService.total()}"/>
+                </span>
+            </div>
+
+            <th:block th:replace="~{fragments/common :: footer}"/>
+
+        </div>
+
+    </div>
+
+    <div class="overlay"></div>
+
+    <th:block th:replace="~{fragments/common :: scripts}" />
+    <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datatable').DataTable();
+        });
+    </script>
+
+</body>
+
+</html>

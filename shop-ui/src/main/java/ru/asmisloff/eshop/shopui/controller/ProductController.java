@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.asmisloff.eshop.common.error.NotFoundException;
 import ru.asmisloff.eshop.common.repr.ProductRepr;
 import ru.asmisloff.eshop.common.service.ProductService;
+import ru.asmisloff.eshop.shopui.model.OrderEntry;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class ProductController {
     @GetMapping("{id}")
     public String showProductDetail(@PathVariable("id") Long id, Model model) {
         model.addAttribute("product", productService.findById(id).orElseThrow(NotFoundException::new));
+        model.addAttribute("orderEntry", new OrderEntry(id, 1));
         return "product_detail3";
     }
 

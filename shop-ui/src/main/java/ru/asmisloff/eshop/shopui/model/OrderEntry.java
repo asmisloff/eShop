@@ -1,54 +1,28 @@
 package ru.asmisloff.eshop.shopui.model;
 
-import ru.asmisloff.eshop.common.repr.ProductRepr;
-
-import java.math.BigDecimal;
-import java.util.Objects;
-
 public class OrderEntry {
 
-    private ProductRepr product;
-    private int qty;
-    private BigDecimal subTotal;
+    private Long id;
+    private Integer qty;
 
-    public void update() {
-        subTotal = product.getPrice().multiply(BigDecimal.valueOf(qty));
-    }
-
-    public ProductRepr getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductRepr product) {
-        this.product = product;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
+    public OrderEntry(Long id, Integer qty) {
+        this.id = id;
         this.qty = qty;
     }
 
-    public BigDecimal getSubTotal() {
-        return subTotal;
+    public Long getId() {
+        return id;
     }
 
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrderEntry that = (OrderEntry) o;
-        return product.equals(that.product);
+    public Integer getQty() {
+        return qty;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(product);
+    public void setQty(Integer qty) {
+        this.qty = qty;
     }
 }

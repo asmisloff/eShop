@@ -52,9 +52,13 @@
                                     Mauris placerat eleifend leo.
                                     <br><span class="stock">2 in stock</span>
                                 </p>
-                                <form class="cart" method="post" th:action="@{'/cart/add?productId=' + ${product.id} + '&qty=1'}">
+                                <form class="cart" method="post" th:object="${orderEntry}" th:action="@{/cart/add}">
+                                    <input hidden th:field="*{id}">
                                     <div class="quantity">
-                                        <input step="1" min="1" max="5" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" type="number">
+                                        <input step="1" min="1" max="5" name="quantity" value="1"
+                                               title="Qty" class="input-text qty text" size="4" type="number"
+                                               th:field="*{qty}"
+                                        />
                                     </div>
                                     <button type="submit" class="bt_main">Add to cart</button>
                                 </form>

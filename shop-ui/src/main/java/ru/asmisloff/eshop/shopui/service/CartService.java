@@ -9,16 +9,15 @@ import ru.asmisloff.eshop.common.repr.ProductRepr;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CartService {
 
     private Map<ProductRepr, Integer> orders = new HashMap<>();
-    private BigDecimal total;
-    private int totalQty;
 
-    public void addProduct(ProductRepr product, int qty) {
+    public void add(ProductRepr product, int qty) {
         if (!orders.containsKey(product)) {
             orders.put(product, qty);
         } else {
@@ -27,7 +26,7 @@ public class CartService {
 
     }
 
-    public void removeProduct(ProductRepr product, int qty) {
+    public void remove(ProductRepr product, int qty) {
         if (!orders.containsKey(product)) {
             return;
         }
@@ -43,12 +42,33 @@ public class CartService {
         return orders;
     }
 
+    public BigDecimal subTotal(ProductRepr productRepr) {
+        if (!orders.containsKey(productRepr)) {
+            throw new NoSuchElementException("No such key in orders: " + productRepr);
+        }
+        int qty = orders.get(productRepr);
+        return productRepr.getPrice().multiply(BigDecimal.valueOf(qty));
+    }
+
+    public BigDecimal total() {
+        return orders.keySet().stream()
+                .map(key -> subTotal(key))
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.ZERO);
+    }
+
+    private int totalQty() {
+        return orders.values().stream()
+                .reduce((a, v) -> a + v)
+                .orElse(0);
+    }
+
     @Override
     public String toString() {
         return "CartService{" +
                 "orders=" + orders +
-                ", total=" + total +
-                ", totalQty=" + totalQty +
+                ", total=" + total() +
+                ", totalQty=" + totalQty() +
                 '}';
     }
 }
