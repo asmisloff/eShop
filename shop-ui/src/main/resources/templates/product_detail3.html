@@ -32,7 +32,9 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="img_box">
                             <figure th:each="picture : ${product.pictures}">
-                                <img alt="#" th:src="@{'/picture/' + ${picture.id}}"/>
+                                <img alt="#"
+                                     th:src="@{{pictureServiceUrl}/picture/{id}(id=${picture.id}, pictureServiceUrl=${pictureServiceUrl})}"
+                                />
                             </figure>
                         </div>
                     </div>

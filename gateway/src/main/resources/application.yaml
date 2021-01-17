@@ -1,0 +1,21 @@
+server:
+  port: 9091
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: picture-service
+          uri: lb://PICTURE-SERVICE
+          predicates:
+            - Path=/picture-service/picture/**
+          filters:
+            - StripPrefix=1

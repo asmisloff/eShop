@@ -23,6 +23,8 @@
         <module>shop-admin-ui</module>
         <module>shop-ui</module>
         <module>spring-cloud-config</module>
+        <module>eureka-server</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
