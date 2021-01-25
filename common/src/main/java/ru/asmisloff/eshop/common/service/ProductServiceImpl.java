@@ -58,8 +58,9 @@ public class ProductServiceImpl implements ProductService, Serializable {
     @Override
     @Transactional
     public void save(ProductRepr productRepr) throws IOException {
-        Product product = (productRepr.getId() != null) ? productRepository.findById(productRepr.getId())
-                .orElseThrow(NotFoundException::new) : new Product();
+        Product product = (productRepr.getId() != null)
+                ? productRepository.findById(productRepr.getId()).orElseThrow(NotFoundException::new)
+                : new Product();
         product.setName(productRepr.getName());
         product.setCategory(productRepr.getCategory());
         product.setBrand(productRepr.getBrand());
